@@ -5,6 +5,12 @@
       "id": "stitch-api-key",
       "description": "Google Stitch API key",
       "password": true
+    },
+    {
+      "type": "promptString",
+      "id": "context7-api-key",
+      "description": "Context7 API key",
+      "password": true
     }
   ],
   "servers": {
@@ -51,6 +57,17 @@
         "-y",
         "@modelcontextprotocol/server-sequential-thinking"
       ]
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ],
+      "env": {
+        "CONTEXT7_API_KEY": "${input:context7-api-key}"
+      }
     }
   }
 }
