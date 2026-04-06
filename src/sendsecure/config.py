@@ -18,12 +18,12 @@ class Settings(BaseSettings):
     app_name: str = Field(default="SendSecure", validation_alias="APP_NAME")
     environment: str = Field(default="development", validation_alias="ENVIRONMENT")
     log_level: str = Field(default="INFO", validation_alias="LOG_LEVEL")
-    database_path: str = Field(default="var/sendsec.db", validation_alias="DATABASE_PATH")
+    database_path: str = Field(default="var/sendsecure.db", validation_alias="DATABASE_PATH")
     cors_origins: str = Field(default="", validation_alias="CORS_ORIGINS")
     app_secret_key: str = Field(..., validation_alias="APP_SECRET_KEY")
     token_ttl_minutes: int = Field(default=60, validation_alias="TOKEN_TTL_MINUTES")
-    jwt_issuer: str = Field(default="sendsec", validation_alias="JWT_ISSUER")
-    jwt_audience: str = Field(default="sendsec-api", validation_alias="JWT_AUDIENCE")
+    jwt_issuer: str = Field(default="sendsecure", validation_alias="JWT_ISSUER")
+    jwt_audience: str = Field(default="sendsecure-api", validation_alias="JWT_AUDIENCE")
 
     @property
     def project_root(self) -> Path:

@@ -4,8 +4,8 @@ from pathlib import Path
 
 import pytest
 from fastapi.testclient import TestClient
-from sendsec.api import create_app
-from sendsec.config import Settings
+from sendsecure.api import create_app
+from sendsecure.config import Settings
 
 
 @pytest.fixture()
@@ -14,11 +14,11 @@ def settings(tmp_path: Path) -> Settings:
         APP_NAME="SendSecure Test",
         ENVIRONMENT="test",
         LOG_LEVEL="DEBUG",
-        DATABASE_PATH=str(tmp_path / "sendsec.db"),
+        DATABASE_PATH=str(tmp_path / "sendsecure.db"),
         APP_SECRET_KEY="test-secret-key-that-is-long-enough",
         TOKEN_TTL_MINUTES=60,
-        JWT_ISSUER="sendsec-test",
-        JWT_AUDIENCE="sendsec-test-api",
+        JWT_ISSUER="sendsecure-test",
+        JWT_AUDIENCE="sendsecure-test-api",
     )
 
 

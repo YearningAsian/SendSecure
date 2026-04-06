@@ -3,7 +3,7 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "sendsec"
+name = "sendsecure"
 version = "0.1.0"
 description = "Secure backend for SendSecure"
 readme = "README.md"
@@ -23,7 +23,7 @@ dev = [
 ]
 
 [project.scripts]
-sendsec = "sendsec.main:main"
+sendsecure = "sendsecure.main:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

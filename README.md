@@ -32,7 +32,7 @@ Runtime values shared by the browser and API:
 - `python -m pytest`
 - `python -m ruff check src tests`
 - `python -m ruff format src tests`
-- `python -m uvicorn sendsec.api:create_app --factory --reload`
+- `python -m uvicorn sendsecure.api:create_app --factory --reload`
 - `npm run build`
 - `bash scripts/dev.sh`
 

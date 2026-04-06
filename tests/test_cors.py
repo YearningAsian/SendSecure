@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 from fastapi.testclient import TestClient
-from sendsec.api import create_app
-from sendsec.config import Settings
+from sendsecure.api import create_app
+from sendsecure.config import Settings
 
 
 def test_cors_allows_configured_frontend_origin(tmp_path) -> None:
@@ -10,11 +10,11 @@ def test_cors_allows_configured_frontend_origin(tmp_path) -> None:
         APP_NAME="SendSecure Test",
         ENVIRONMENT="test",
         LOG_LEVEL="DEBUG",
-        DATABASE_PATH=str(tmp_path / "sendsec.db"),
+        DATABASE_PATH=str(tmp_path / "sendsecure.db"),
         APP_SECRET_KEY="test-secret-key-that-is-long-enough",
         TOKEN_TTL_MINUTES=60,
-        JWT_ISSUER="sendsec-test",
-        JWT_AUDIENCE="sendsec-test-api",
+        JWT_ISSUER="sendsecure-test",
+        JWT_AUDIENCE="sendsecure-test-api",
         CORS_ORIGINS="http://127.0.0.1:5173",
     )
     app = create_app(settings=settings)

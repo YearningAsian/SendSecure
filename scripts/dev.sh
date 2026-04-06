@@ -30,7 +30,7 @@ trap cleanup EXIT INT TERM
 echo "Starting backend on http://${backend_host}:${backend_port}"
 echo "Starting frontend on http://${frontend_host}:${frontend_port}"
 
-auth_backend_cmd=(python -m uvicorn sendsec.api:create_app --factory --reload --host "$backend_host" --port "$backend_port")
+auth_backend_cmd=(python -m uvicorn sendsecure.api:create_app --factory --reload --host "$backend_host" --port "$backend_port")
 frontend_cmd=(npm run dev -- --host "$frontend_host" --port "$frontend_port")
 
 "${auth_backend_cmd[@]}" &

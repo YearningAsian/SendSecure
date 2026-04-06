@@ -21,7 +21,7 @@ import type {
 	User
 } from './types';
 
-const tokenStorageKey = 'sendsec.auth.token';
+const tokenStorageKey = 'sendsecure.auth.token';
 
 const emptyAuthForm: AuthFormState = {
 	email: '',
