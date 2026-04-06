@@ -253,6 +253,27 @@ function App() {
             </div>
           </div>
 
+          <div className="environment-grid">
+            <article className="environment-card">
+              <span className="state-title">API endpoint</span>
+              <span className="state-copy">{appConfig.apiBaseUrl ?? 'Unset'}</span>
+            </article>
+            <article className="environment-card">
+              <span className="state-title">Support contact</span>
+              <span className="state-copy">{appConfig.supportEmail ?? 'Unset'}</span>
+            </article>
+            <article className="environment-card">
+              <span className="state-title">Documentation</span>
+              {appConfig.docsUrl ? (
+                <a href={appConfig.docsUrl} target="_blank" rel="noreferrer">
+                  Open docs
+                </a>
+              ) : (
+                <span className="state-copy">Unset</span>
+              )}
+            </article>
+          </div>
+
           <div className="metric-grid">
             {workspace.metrics.length > 0 ? (
               workspace.metrics.map((metric) => (

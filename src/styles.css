@@ -330,12 +330,30 @@ button {
   margin-bottom: 18px;
 }
 
+.environment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
 .metric-card,
+.environment-card,
 .empty-state {
   border: 1px solid rgba(148, 163, 184, 0.12);
   border-radius: 20px;
   background: rgba(2, 6, 23, 0.38);
   padding: 16px;
+}
+
+.environment-card a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.environment-card a:hover {
+  text-decoration: underline;
 }
 
 .metric-card strong {
