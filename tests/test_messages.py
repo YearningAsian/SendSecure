@@ -50,3 +50,30 @@ def test_message_crud(client) -> None:
 
     delete_response = client.delete(f"/v1/messages/{message_id}", headers=headers)
     assert delete_response.status_code == 204
+
+
+def test_audit_events_include_message_actions(client) -> None:
+    register_response = client.post(
+        "/v1/auth/register",
+        json={"email": "alice@example.com", "password": "very-strong-password"},
+    )
+    token = register_response.json()["access_token"]
+    headers = {"Authorization": f"Bearer {token}"}
+
+    client.post(
+        "/v1/messages",
+        headers=headers,
+        json={
+            "title": "Quarterly report",
+            "body": "Encrypted message body",
+            "recipient_email": "bob@example.com",
+            "expires_at": "2030-01-01T00:00:00+00:00",
+        },
+    )
+
+    audit_response = client.get("/v1/audit-events", headers=headers)
+
+    assert audit_response.status_code == 200
+    actions = [event["action"] for event in audit_response.json()]
+    assert "auth.register" in actions
+    assert "message.create" in actions

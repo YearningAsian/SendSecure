@@ -1,16 +1,12 @@
 from __future__ import annotations
 
-from pathlib import Path
-
-import pytest
 from fastapi.testclient import TestClient
 from sendsec.api import create_app
 from sendsec.config import Settings
 
 
-@pytest.fixture()
-def settings(tmp_path: Path) -> Settings:
-    return Settings(
+def test_cors_allows_configured_frontend_origin(tmp_path) -> None:
+    settings = Settings(
         APP_NAME="SendSecure Test",
         ENVIRONMENT="test",
         LOG_LEVEL="DEBUG",
@@ -19,10 +15,15 @@ def settings(tmp_path: Path) -> Settings:
         TOKEN_TTL_MINUTES=60,
         JWT_ISSUER="sendsec-test",
         JWT_AUDIENCE="sendsec-test-api",
+        CORS_ORIGINS="http://127.0.0.1:5173",
+    )
+    app = create_app(settings=settings)
+    client = TestClient(app)
+
+    response = client.get(
+        "/v1/healthz",
+        headers={"Origin": "http://127.0.0.1:5173"},
     )
 
-
-@pytest.fixture()
-def client(settings: Settings) -> TestClient:
-    app = create_app(settings=settings)
-    return TestClient(app)
+    assert response.status_code == 200
+    assert response.headers["access-control-allow-origin"] == "http://127.0.0.1:5173"

@@ -15,7 +15,7 @@ class Settings(BaseSettings):
         populate_by_name=True,
     )
 
-    app_name: str = Field(default="SendSec", validation_alias="APP_NAME")
+    app_name: str = Field(default="SendSecure", validation_alias="APP_NAME")
     environment: str = Field(default="development", validation_alias="ENVIRONMENT")
     log_level: str = Field(default="INFO", validation_alias="LOG_LEVEL")
     database_path: str = Field(default="var/sendsec.db", validation_alias="DATABASE_PATH")

@@ -1,1 +1,1 @@
-"""SendSec backend package."""
+"""SendSecure backend package."""
