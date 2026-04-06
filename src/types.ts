@@ -47,3 +47,11 @@ export type MessageDraft = {
   status: MessageStatus;
   expires_at: string;
 };
+
+export type MessagePayload = {
+  title: string;
+  body: string;
+  recipient_email: string;
+  status: MessageStatus;
+  expires_at: string | null;
+};

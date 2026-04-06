@@ -1,4 +1,12 @@
-import type { AuditEvent, AuthFormState, AuthResponse, Message, MessageDraft, User } from '../types';
+import type {
+  AuditEvent,
+  AuthFormState,
+  AuthResponse,
+  Message,
+  MessageDraft,
+  MessagePayload,
+  User
+} from '../types';
 
 const createUrl = (baseUrl: string, path: string): string => {
   const normalizedBaseUrl = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
@@ -95,7 +103,7 @@ export const loadMessages = async (baseUrl: string, token: string): Promise<Mess
 export const createMessage = async (
   baseUrl: string,
   token: string,
-  draft: MessageDraft
+  draft: MessagePayload
 ): Promise<Message> =>
   fetchJson<Message>(baseUrl, '/messages', {
     method: 'POST',
@@ -115,7 +123,7 @@ export const updateMessage = async (
   baseUrl: string,
   token: string,
   messageId: string,
-  draft: MessageDraft
+  draft: MessagePayload
 ): Promise<Message> =>
   fetchJson<Message>(baseUrl, `/messages/${messageId}`, {
     method: 'PATCH',

@@ -18,7 +18,7 @@ const normalizeBaseUrl = (value: string | undefined): string | undefined => {
 };
 
 export const appConfig = {
-  appName: readEnv('VITE_APP_NAME') ?? 'SendSec',
+  appName: readEnv('VITE_APP_NAME') ?? 'SendSecure',
   appTagline:
     readEnv('VITE_APP_TAGLINE') ?? 'Secure delivery workspace for sensitive transfers.',
   apiBaseUrl: normalizeBaseUrl(readEnv('VITE_API_BASE_URL')),
