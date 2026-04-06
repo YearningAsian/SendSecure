@@ -4,6 +4,7 @@ from datetime import datetime
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, FastAPI, HTTPException, Request, status
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pydantic import BaseModel, EmailStr, Field, field_validator
 
@@ -300,6 +301,15 @@ def create_app(*, settings: Settings | None = None) -> FastAPI:
     repository.initialize()
 
     app = FastAPI(title=settings.app_name, version="0.1.0")
+    cors_origins = settings.resolved_cors_origins()
+    if cors_origins:
+        app.add_middleware(
+            CORSMiddleware,
+            allow_origins=cors_origins,
+            allow_credentials=False,
+            allow_methods=["*"],
+            allow_headers=["*"],
+        )
     app.state.settings = settings
     app.state.repository = repository
     app.state.auth_service = AuthService(repository, settings)

@@ -19,6 +19,7 @@ class Settings(BaseSettings):
     environment: str = Field(default="development", validation_alias="ENVIRONMENT")
     log_level: str = Field(default="INFO", validation_alias="LOG_LEVEL")
     database_path: str = Field(default="var/sendsec.db", validation_alias="DATABASE_PATH")
+    cors_origins: str = Field(default="", validation_alias="CORS_ORIGINS")
     app_secret_key: str = Field(..., validation_alias="APP_SECRET_KEY")
     token_ttl_minutes: int = Field(default=60, validation_alias="TOKEN_TTL_MINUTES")
     jwt_issuer: str = Field(default="sendsec", validation_alias="JWT_ISSUER")
@@ -37,6 +38,10 @@ class Settings(BaseSettings):
         if self.project_root not in resolved_path.parents and resolved_path != self.project_root:
             raise ValueError("DATABASE_PATH must stay within the project workspace")
         return resolved_path
+
+    def resolved_cors_origins(self) -> list[str]:
+        origins = [origin.strip() for origin in self.cors_origins.split(",")]
+        return [origin for origin in origins if origin]
 
 
 @lru_cache(maxsize=1)
