@@ -2,7 +2,7 @@
 
 ## Overview
 
-This workspace now includes a frontend build for SendSecure. The UI is driven by runtime configuration and does not rely on mocked data.
+The frontend is a live React client for the FastAPI backend. It uses runtime configuration and only renders data returned by the API.
 
 ## Commands
 
@@ -10,6 +10,7 @@ This workspace now includes a frontend build for SendSecure. The UI is driven by
 - `npm run dev`
 - `npm run build`
 - `npm run preview`
+- `bash scripts/dev.sh`
 
 ## Runtime Variables
 
@@ -23,12 +24,12 @@ Set these values in your local environment before running the app:
 
 ## Behavior
 
-- When `VITE_API_BASE_URL` is set, the dashboard loads live metrics and activity from the backend.
-- When the API is unavailable, the UI falls back to empty states and guidance instead of fake data.
-- Transfer submissions are posted to the configured backend endpoint only.
+- When `VITE_API_BASE_URL` is set, the client loads the backend health status, authenticates users, and fetches live messages and audit events.
+- When the API is unavailable, the UI shows empty states and connection guidance instead of mock data.
+- Message create, edit, and delete actions are sent to the configured backend endpoint only.
 
 ## Next Frontend Steps
 
-- Add browser automation for the transfer workflow.
-- Split the dashboard panels into smaller components once the API contract stabilizes.
-- Add client-side validation rules that mirror the backend contract.
+- Split the authenticated workspace into smaller route-based panels.
+- Add browser automation around the auth and message lifecycle.
+- Add client-side validation that mirrors the backend constraints.
